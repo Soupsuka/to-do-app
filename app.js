@@ -25,6 +25,14 @@ function onReady() {
       const checkbox = document.createElement('input')
       checkbox.type = "checkbox";
 
+      checkbox.onclick = function() {
+        if (checkbox.checked == true) {
+          checkbox.complete = true;
+        } else {
+          checkbox.complete = false;
+        }
+      }
+
       newLi.textContent = toDo.title;
 
       toDoList.appendChild(newLi);
@@ -38,8 +46,14 @@ function onReady() {
   });
 
   renderTheUI();
+
+  localStorage.setItem('toDos', JSON.stringify(toDos));
+
+  let restoredSession = JSON.parse(localStorage.getItem('toDos'));
+
+  console.log(restoredSession);
 }
 
-window.onload = function () {
+window.onload = function() {
   onReady();
 };
